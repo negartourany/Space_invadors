@@ -1,0 +1,122 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pygame\r\n\r\npygame.init()\r\nscreen = pygame.display.set_mode((1280, 720))\r\nclock = pygame.time.Clock()\r\npygame.display.set_caption(\"Space Invaders\")\r\ngame = True\r\ndt = 0\r\n# Setting the background image\r\nbackground = pygame.image.load(\"background.jpg\")\r\nbackground = pygame.transform.scale(background, (1280, 720))\r\n# Setting the player\r\nplayer_pos = pygame.Vector2(screen.get_width() / 2, 630)\r\nplayer = pygame.image.load(\"player.png\")\r\nplayer = pygame.transform.scale(player, (70, 70))\r\n# Setting the enemies\r\nenemy_1 = pygame.image.load(\"enemy1.png\")\r\nenemy_1 = pygame.transform.scale(enemy_1, (80, 80))\r\nenemy_2 = pygame.image.load(\"enemy2.png\")\r\nenemy_2 = pygame.transform.scale(enemy_2, (70, 70))\r\nenemy_3 = pygame.image.load(\"enemy3.png\")\r\nenemy_3 = pygame.transform.scale(enemy_3, (85, 60))\r\nenemy_positions = []\r\n# Initialize enemy positions\r\nfor i in range(11):\r\n    enemy_positions.append(pygame.Rect((160 + i * 90, 30, 80, 80)))\r\n    enemy_positions.append(pygame.Rect((160 + i * 90, 110, 70, 70)))\r\n    enemy_positions.append(pygame.Rect((160 + i * 90, 200, 85, 60)))\r\nenemy_direction = 1\r\nwhile game:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            game = False\r\n    screen.blit(background, (0, 0))\r\n    # Drawing and moving enemies\r\n    reverse_direction = False\r\n    x_cor = 160\r\n    for i in range(11):\r\n        enemy1 = screen.blit(enemy_1,(x_cor,30))\r\n        x_cor += 90\r\n    # for enemy in enemy_positions:\r\n    #     # enemy.move_ip(0,1)\r\n    #     enemy.move_ip(2 * enemy_direction,0)\r\n    #     if enemy.right >= screen.get_width() or enemy.left < 0:\r\n    #         reverse_direction = True\r\n    #     # if enemy.y == 30:\r\n    #     #     screen.blit(enemy_1, enemy)\r\n    #     elif enemy.y == 110:\r\n    #         screen.blit(enemy_2, enemy)\r\n    #     elif enemy.y == 200:\r\n    #         screen.blit(enemy_3, enemy)\r\n\r\n    if reverse_direction:\r\n        enemy_direction *= -1\r\n        # Move all enemies down\r\n        for enemy in enemy_positions:\r\n            enemy.move(0,10)\r\n    screen.blit(player, player_pos)\r\n    keys = pygame.key.get_pressed()\r\n    if keys[pygame.K_a]:\r\n        player_pos.x -= 300 * dt\r\n    if keys[pygame.K_d]:\r\n        player_pos.x += 300 * dt\r\n    pygame.display.flip()\r\n    dt = clock.tick(60) / 1000\r\npygame.quit()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	(revision c4a79f2c00975ae6d9aa18b89ecf49de18468dd8)
++++ b/main.py	(date 1737688697459)
+@@ -22,10 +22,10 @@
+ enemy_3 = pygame.transform.scale(enemy_3, (85, 60))
+ enemy_positions = []
+ # Initialize enemy positions
+-for i in range(11):
+-    enemy_positions.append(pygame.Rect((160 + i * 90, 30, 80, 80)))
+-    enemy_positions.append(pygame.Rect((160 + i * 90, 110, 70, 70)))
+-    enemy_positions.append(pygame.Rect((160 + i * 90, 200, 85, 60)))
++# for i in range(11):
++#     enemy_positions.append(pygame.Rect((160 + i * 90, 30, 80, 80)))
++#     enemy_positions.append(pygame.Rect((160 + i * 90, 110, 70, 70)))
++#     enemy_positions.append(pygame.Rect((160 + i * 90, 200, 85, 60)))
+ enemy_direction = 1
+ while game:
+     for event in pygame.event.get():
+@@ -38,6 +38,9 @@
+     for i in range(11):
+         enemy1 = screen.blit(enemy_1,(x_cor,30))
+         x_cor += 90
++        enemy_positions.append(pygame.Rect((160 + i * 90, 30, 80, 80)))
++        
++
+     # for enemy in enemy_positions:
+     #     # enemy.move_ip(0,1)
+     #     enemy.move_ip(2 * enemy_direction,0)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ad4b1160-145b-4996-9e58-aac7f677b149\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/Space_invadors.iml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/main.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 4\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2rtlrHmjYkBfoewrzIULlLMcc1H\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Python.main.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ad4b1160-145b-4996-9e58-aac7f677b149\" name=\"Changes\" comment=\"\" />\r\n      <created>1737386449183</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1737386449183</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c4a79f2c00975ae6d9aa18b89ecf49de18468dd8)
++++ b/.idea/workspace.xml	(date 1737688627134)
+@@ -4,15 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ad4b1160-145b-4996-9e58-aac7f677b149" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/Space_invadors.iml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
++    <list default="true" id="ad4b1160-145b-4996-9e58-aac7f677b149" name="Changes" comment="checkpoint">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -27,11 +21,16 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="master" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 4
+-}]]></component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 4
++}</component>
+   <component name="ProjectId" id="2rtlrHmjYkBfoewrzIULlLMcc1H" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -43,7 +42,7 @@
+     "Python.main.executor": "Run",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "master"
++    "git-widget-placeholder": "checkpoint"
+   }
+ }]]></component>
+   <component name="SharedIndexes">
+@@ -62,6 +61,27 @@
+       <option name="presentableId" value="Default" />
+       <updated>1737386449183</updated>
+     </task>
++    <task id="LOCAL-00001" summary="checkpoint">
++      <option name="closed" value="true" />
++      <created>1737688246022</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1737688246022</updated>
++    </task>
++    <task id="LOCAL-00002" summary="checkpoint">
++      <option name="closed" value="true" />
++      <created>1737688281951</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1737688281951</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="checkpoint" />
++    <option name="LAST_COMMIT_MESSAGE" value="checkpoint" />
++  </component>
+ </project>
+\ No newline at end of file
